@@ -8,6 +8,7 @@ import {
     StrapiCollectionResponse,
     StrapiSingleResponse,
 } from "../types"
+import { HomePage } from "../components/HomePage"
 
 const Home: React.FC<{
     homepage: HomepageApi
@@ -16,14 +17,7 @@ const Home: React.FC<{
     return (
         <Layout>
             <Seo seo={homepage.seo} />
-            <div className="uk-section">
-                <div className="uk-container uk-container-large">
-                    {nominations.map((n) => (
-                        <div key={n.slug}>{n.name}</div>
-                    ))}
-                    {/*<Articles articles={articles} />*/}
-                </div>
-            </div>
+            <HomePage />
         </Layout>
     )
 }
