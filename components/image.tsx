@@ -1,7 +1,11 @@
+import React from "react"
 import { getStrapiMedia } from "../lib/media"
 import NextImage from "next/image"
+import { StrapiImageApi, StrapiSingleData } from "../types"
 
-const Image = ({ image }) => {
+const Image: React.FC<{ image: StrapiSingleData<StrapiImageApi> }> = ({
+    image,
+}) => {
     const { alternativeText, width, height } = image.data.attributes
 
     // const loader = () => {
