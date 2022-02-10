@@ -1,20 +1,9 @@
-import React from 'react'
-import Aside from './content/aside'
-import Footer from './content/footer'
-import { ContactsSectionApi } from '../types'
+import React from "react"
 
-const Layout: React.FC<{ contacts: ContactsSectionApi }> = ({
-    children,
-    contacts,
-}) => (
+const Layout: React.FC<{}> = ({ children }) => (
     <>
-        <div className="font-display">
-            <div className="flex">
-                <main className="flex-1">{children}</main>
-                <Aside />
-            </div>
-            <Footer contacts={contacts} />
-        </div>
+        {children}
+        {/*<Menu menu={menu} />*/}
     </>
 )
 
