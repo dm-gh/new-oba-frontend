@@ -3,6 +3,7 @@ import { ContactsSectionApi } from '../../../types'
 import cn from 'classnames'
 import LayoutSection from './layout-section'
 import AspectRatio from '../../util/aspect-ratio'
+import YandexMap from '../../util/yandex-map'
 
 const Contacts: React.FC<{ contacts: ContactsSectionApi }> = ({ contacts }) => {
     return (
@@ -31,7 +32,10 @@ const Contacts: React.FC<{ contacts: ContactsSectionApi }> = ({ contacts }) => {
                         ))}
                     </span>
                     <AspectRatio ratio="16:9">
-                        <div className="bg-gray w-full h-full">Map</div>
+                        <YandexMap
+                            addressLatLng={contacts.addressLatLng}
+                            className="bg-gray w-full h-full"
+                        />
                     </AspectRatio>
                 </div>
             </div>

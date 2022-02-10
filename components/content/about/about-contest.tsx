@@ -9,6 +9,7 @@ import {
 import AspectRatio from '../../util/aspect-ratio'
 import LayoutSection from './layout-section'
 import ReactMarkdown from 'react-markdown'
+import YoutubeVideo from '../../util/youtube-video'
 
 const AboutContest: React.FC<{
     aboutContest: AboutContestSectionApi
@@ -33,7 +34,10 @@ const AboutContest: React.FC<{
                 </div>
                 <div className="col-span-1 lg:col-span-3 flex flex-col lg:pt-16">
                     <AspectRatio ratio="16:9" className="mb-7">
-                        <div className="bg-gray-darkest w-full h-full" />
+                        <YoutubeVideo
+                            src={aboutContest.videoUrl}
+                            className="bg-gray-darkest w-full h-full"
+                        />
                     </AspectRatio>
 
                     <ReactMarkdown className="text-sm sm:text-base uppercase">

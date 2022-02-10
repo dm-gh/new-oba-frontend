@@ -87,6 +87,7 @@ export type ContactsSectionApi = {
     phone: string
     title: string
     social: StrapiWithId<LinkApi>[]
+    addressLatLng: [number, number]
     createdAt: string
     updatedAt: string
     publishedAt: string

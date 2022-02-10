@@ -11,11 +11,11 @@ import {
     NominationsSectionApi,
     StrapiSingleResponse,
 } from '../types'
-import AboutContest from '../components/content/home/about-contest'
-import Nominations from '../components/content/home/nominations'
-import Conditions from '../components/content/home/conditions'
-import Juries from '../components/content/home/juries'
-import Contacts from '../components/content/home/contacts'
+import AboutContest from '../components/content/about/about-contest'
+import Nominations from '../components/content/about/nominations'
+import Conditions from '../components/content/about/conditions'
+import Juries from '../components/content/about/juries'
+import Contacts from '../components/content/about/contacts'
 
 const Home: React.FC<{
     homepage: HomepageApi
