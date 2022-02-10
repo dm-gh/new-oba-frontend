@@ -44,7 +44,7 @@ export async function fetchAPI<T = any>(
     // Handle response
     if (!response.ok) {
         console.error(response.statusText)
-        throw new Error(`An error occured please try again`)
+        throw new Error('An error occured please try again')
     }
     const data = await response.json()
 
