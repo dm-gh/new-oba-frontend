@@ -1,50 +1,102 @@
-import React from "react"
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import { fetchAPI } from "../lib/api"
+import React from 'react'
+import Layout from '../components/layout'
+import Seo from '../components/util/seo'
+import { fetchAPI } from '../lib/api'
 import {
+    AboutContestSectionApi,
+    ConditionsSectionApi,
+    ContactsSectionApi,
     HomepageApi,
-    NominationApi,
-    StrapiCollectionResponse,
+    JuriesSectionApi,
+    NominationsSectionApi,
     StrapiSingleResponse,
-} from "../types"
+} from '../types'
+import AboutContest from '../components/content/home/about-contest'
+import Nominations from '../components/content/home/nominations'
+import Conditions from '../components/content/home/conditions'
+import Juries from '../components/content/home/juries'
+import Contacts from '../components/content/home/contacts'
 
 const Home: React.FC<{
     homepage: HomepageApi
-    nominations: NominationApi[]
-}> = ({ homepage, nominations }) => {
+    aboutContest: AboutContestSectionApi
+    nominations: NominationsSectionApi
+    conditions: ConditionsSectionApi
+    juries: JuriesSectionApi
+    contacts: ContactsSectionApi
+}> = ({
+    homepage,
+    aboutContest,
+    nominations,
+    conditions,
+    juries,
+    contacts,
+}) => {
     return (
-        <Layout>
+        <Layout contacts={contacts}>
             <Seo seo={homepage.seo} />
-            <div className="uk-section">
-                <div className="uk-container uk-container-large">
-                    {nominations.map((n) => (
-                        <div key={n.slug}>{n.name}</div>
-                    ))}
-                    {/*<Articles articles={articles} />*/}
-                </div>
-            </div>
+            <AboutContest
+                aboutContest={aboutContest}
+                nominations={nominations}
+                conditions={conditions}
+                juries={juries}
+                contacts={contacts}
+            />
+
+            <Nominations nominations={nominations} />
+
+            <Conditions conditions={conditions} />
+
+            <Juries juries={juries} />
+
+            <Contacts contacts={contacts} />
         </Layout>
     )
 }
 
 export async function getStaticProps() {
     // Run API calls in parallel
-    const [homepageRes, nominationsRes] = await Promise.all([
-        fetchAPI<StrapiSingleResponse<HomepageApi>>("/homepage", {
+    const [
+        homepageRes,
+        aboutContestRes,
+        nominationsRes,
+        conditionsRes,
+        juriesRes,
+        contactsRes,
+    ] = await Promise.all([
+        fetchAPI<StrapiSingleResponse<HomepageApi>>('/homepage', {
             populate: {
-                seo: { populate: "*" },
+                seo: { populate: '*' },
             },
         }),
-        fetchAPI<StrapiCollectionResponse<NominationApi>>("/nominations"),
+        fetchAPI<StrapiSingleResponse<AboutContestSectionApi>>(
+            '/about-contest-section'
+        ),
+        fetchAPI<StrapiSingleResponse<NominationsSectionApi>>(
+            '/nominations-section',
+            { populate: '*' }
+        ),
+        fetchAPI<StrapiSingleResponse<ConditionsSectionApi>>(
+            '/conditions-section',
+            { populate: '*' }
+        ),
+        fetchAPI<StrapiSingleResponse<JuriesSectionApi>>('/juries-section', {
+            populate: '*',
+        }),
+        fetchAPI<StrapiSingleResponse<ContactsSectionApi>>(
+            '/contacts-section',
+            { populate: '*' }
+        ),
     ])
 
     return {
         props: {
             homepage: homepageRes.data.attributes,
-            nominations: nominationsRes.data.map(
-                ({ attributes }) => attributes
-            ),
+            aboutContest: aboutContestRes.data.attributes,
+            nominations: nominationsRes.data.attributes,
+            conditions: conditionsRes.data.attributes,
+            juries: juriesRes.data.attributes,
+            contacts: contactsRes.data.attributes,
         },
         revalidate: 1,
     }
