@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .list-dashed {
+        list-style-type: none;
+    }
+    .list-dashed > li:before {
+        content: "–";
+    }
+}
+
+strong {
+    @apply font-medium;
+}
+
+a {
+    @apply text-accent hover:underline;
+}
