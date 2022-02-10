@@ -1,9 +1,9 @@
-import React from "react"
-import Head from "next/head"
-import { useContext } from "react"
-import { GlobalContext } from "../pages/_app"
-import { getStrapiMedia } from "../lib/media"
-import { SeoApi } from "../types"
+import React from 'react'
+import Head from 'next/head'
+import { useContext } from 'react'
+import { GlobalContext } from '../../pages/_app'
+import { getStrapiMedia } from '../../lib/media'
+import { SeoApi } from '../../types'
 
 const Seo: React.FC<{ seo: SeoApi }> = ({ seo }) => {
     const { seo: defaultSeo } = useContext(GlobalContext)
