@@ -1,8 +1,8 @@
 import React from 'react'
-import { ContactsSectionApi } from '../../types'
+import { ContactApi } from '../../types'
 import cn from 'classnames'
 
-const Footer: React.FC<{ contacts: ContactsSectionApi }> = ({ contacts }) => {
+const Footer: React.FC<{ contact: ContactApi }> = ({ contact }) => {
     return (
         <footer className="bg-black px-8 sm:px-12 md:px-16 lg:px-20 py-12 flex flex-col md:flex-row justify-between">
             <div className="text-md md:text-lg text-white uppercase">
@@ -10,7 +10,7 @@ const Footer: React.FC<{ contacts: ContactsSectionApi }> = ({ contacts }) => {
             </div>
             <div className="flex flex-col text-sm text-white">
                 <span className="flex mb-7">
-                    {contacts.social.map(({ name, address, id }, i) => (
+                    {contact.social.map(({ name, address, id }, i) => (
                         <a
                             key={id}
                             className={cn(
@@ -23,9 +23,9 @@ const Footer: React.FC<{ contacts: ContactsSectionApi }> = ({ contacts }) => {
                         </a>
                     ))}
                 </span>
-                <span className="mb-2 uppercase">{contacts.address}</span>
-                <span className="mb-2 uppercase">{contacts.phone}</span>
-                <span className="uppercase">{contacts.email}</span>
+                <span className="mb-2 uppercase">{contact.address}</span>
+                <span className="mb-2 uppercase">{contact.phone}</span>
+                <span className="uppercase">{contact.email}</span>
             </div>
         </footer>
     )

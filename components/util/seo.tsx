@@ -3,11 +3,11 @@ import Head from 'next/head'
 import { useContext } from 'react'
 import { GlobalContext } from '../../pages/_app'
 import { getStrapiMedia } from '../../lib/media'
-import { SeoApi } from '../../types'
+import { SharedSeoApi } from '../../types'
 
-const Seo: React.FC<{ seo: SeoApi }> = ({ seo }) => {
+const Seo: React.FC<{ seo: SharedSeoApi }> = ({ seo }) => {
     const { seo: defaultSeo } = useContext(GlobalContext)
-    const seoWithDefaults: SeoApi = {
+    const seoWithDefaults: SharedSeoApi = {
         ...defaultSeo,
         ...seo,
     }
