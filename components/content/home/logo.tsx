@@ -10,7 +10,10 @@ const Logo: React.FC<{ logo: SharedLogoApi; className?: string }> = ({
     return (
         <div className={cn(className, 'flex flex-col pr-1/5')}>
             <div className="w-2/3 relative mb-14">
-                <Image image={logo.image} />
+                <img
+                    src={logo.image.data.attributes.url}
+                    alt={logo.image.data.attributes.alternativeText || ''}
+                />
                 <div className="absolute inset-0 h-full w-full px-10">
                     <svg
                         className="h-full w-full"

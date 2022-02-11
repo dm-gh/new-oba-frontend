@@ -8,13 +8,13 @@ const Image: React.FC<{ image: StrapiSingleData<StrapiMediaApi> }> = ({
 }) => {
     const { alternativeText, width, height } = image.data.attributes
 
-    const loader = () => {
-        return getStrapiMedia(image)
-    }
+    // const loader = () => {
+    //     return getStrapiMedia(image)
+    // }
 
     return (
         <NextImage
-            loader={loader}
+            // loader={loader}
             layout="responsive"
             width={width}
             height={height}
