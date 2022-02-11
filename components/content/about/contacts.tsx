@@ -1,23 +1,27 @@
 import React from 'react'
-import { ContactsSectionApi } from '../../../types'
+import { AboutContactsSectionApi, ContactApi } from '../../../types'
 import cn from 'classnames'
 import LayoutSection from './layout-section'
 import AspectRatio from '../../util/aspect-ratio'
+import YandexMap from '../../util/yandex-map'
 
-const Contacts: React.FC<{ contacts: ContactsSectionApi }> = ({ contacts }) => {
+const Contacts: React.FC<{
+    section: AboutContactsSectionApi
+    contact: ContactApi
+}> = ({ section, contact }) => {
     return (
         <LayoutSection className="bg-white">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-2 uppercase">
-                {contacts.title}
+                {section.title}
             </h2>
             <hr className="border-black border-2 mb-12" />
             <div className="grid grid-cols-1 lg:grid-cols-3 mb-24">
                 <div className="col-span-1 lg:col-span-2 lg:col-start-2 flex flex-col text-sm">
-                    <span className="mb-2 uppercase">{contacts.address}</span>
-                    <span className="mb-2 uppercase">{contacts.phone}</span>
-                    <span className="mb-6 uppercase">{contacts.email}</span>
+                    <span className="mb-2 uppercase">{contact.address}</span>
+                    <span className="mb-2 uppercase">{contact.phone}</span>
+                    <span className="mb-6 uppercase">{contact.email}</span>
                     <span className="flex mb-12">
-                        {contacts.social.map(({ name, address, id }, i) => (
+                        {contact.social.map(({ name, address, id }, i) => (
                             <a
                                 key={id}
                                 className={cn(
@@ -31,7 +35,10 @@ const Contacts: React.FC<{ contacts: ContactsSectionApi }> = ({ contacts }) => {
                         ))}
                     </span>
                     <AspectRatio ratio="16:9">
-                        <div className="bg-gray w-full h-full">Map</div>
+                        <YandexMap
+                            addressLatLng={contact.addressLatLng}
+                            className="bg-gray w-full h-full"
+                        />
                     </AspectRatio>
                 </div>
             </div>

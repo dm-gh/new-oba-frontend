@@ -1,18 +1,18 @@
 import React from 'react'
 import ArrowDownIcon from '../../../assets/icons/arrow_down.svg'
 import LayoutSection from './layout-section'
-import { ConditionsSectionApi } from '../../../types'
+import { AboutConditionsSectionApi } from '../../../types'
 import ReactMarkdown from 'react-markdown'
 
-const Conditions: React.FC<{ conditions: ConditionsSectionApi }> = ({
-    conditions,
+const Conditions: React.FC<{ section: AboutConditionsSectionApi }> = ({
+    section,
 }) => {
-    const pdf = conditions.pdf.data.attributes
+    const pdf = section.pdf.data.attributes
 
     return (
         <LayoutSection className="bg-gray">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-2 uppercase">
-                {conditions.title}
+                {section.title}
             </h2>
             <hr className="border-black border-2 mb-12" />
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
@@ -24,13 +24,13 @@ const Conditions: React.FC<{ conditions: ConditionsSectionApi }> = ({
                                 {pdf.ext.substr(1)}
                             </span>
                             <ReactMarkdown className="font-light text-xs uppercase">
-                                {conditions.pdfDownload}
+                                {section.pdfDownload}
                             </ReactMarkdown>
                         </div>
                     </div>
                 </div>
                 <ReactMarkdown className="col-span-1 lg:col-span-2 uppercase">
-                    {conditions.conditions}
+                    {section.conditions}
                 </ReactMarkdown>
             </div>
         </LayoutSection>

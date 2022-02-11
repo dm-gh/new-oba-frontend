@@ -1,10 +1,10 @@
 import React from 'react'
 import LayoutSection from './layout-section'
-import { NominationApi, NominationsSectionApi } from '../../../types'
+import { AboutNominationsSectionApi, NominationApi } from '../../../types'
 import cn from 'classnames'
 
-const Nominations: React.FC<{ nominations: NominationsSectionApi }> = ({
-    nominations,
+const Nominations: React.FC<{ section: AboutNominationsSectionApi }> = ({
+    section,
 }) => {
     const renderNominationWithIndex = (
         nominationApi: NominationApi,
@@ -140,7 +140,7 @@ const Nominations: React.FC<{ nominations: NominationsSectionApi }> = ({
     return (
         <LayoutSection className="bg-white">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-medium mb-2 uppercase">
-                {nominations.title}
+                {section.title}
             </h2>
             <hr className="border-black border-2 mb-12" />
             <div
@@ -152,7 +152,7 @@ const Nominations: React.FC<{ nominations: NominationsSectionApi }> = ({
                     'flex flex-wrap'
                 )}
             >
-                {nominations.nominations.data.map((nomination, i) => (
+                {section.nominations.data.map((nomination, i) => (
                     <React.Fragment key={nomination.id}>
                         {renderNominationWithIndex(nomination.attributes, i)}
                     </React.Fragment>
